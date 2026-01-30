@@ -13,13 +13,24 @@ export default function Hero() {
           simple, usable products.
         </p>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href="#projects" className="btn btn-accent">
-            View Projects
-          </a>
+        <div className="mt-5 flex flex-col items-center gap-4">
+          <div className="flex gap-4">
+            <a href="#projects" className="btn btn-accent">
+              View Projects
+            </a>
 
-          <a href="#contact" className="btn btn-ghost">
-            Contact
+            <a href="#contact" className="btn btn-ghost">
+              Contact
+            </a>
+          </div>
+
+          <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-accent"
+            >
+            Download CV
           </a>
         </div>
 
