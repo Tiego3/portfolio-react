@@ -41,9 +41,10 @@ export default function Contact() {
 
             <button
               onClick={copyEmail}
+              type="button"
               className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-medium hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-900"
             >
-              {copied ? "Copied ✅" : "Copy email"}
+              {copied ? "Copied" : "Copy email"}
             </button>
 
             <div className="mt-2 flex flex-wrap gap-3 text-sm">
@@ -67,45 +68,59 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right: Optional form explanation */}
+        {/* Right: Netlify form */}
         <div className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
-          <h3 className="font-semibold">Message</h3>
+          <h3 className="font-semibold">Send a message</h3>
 
-          <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-            For a beginner-friendly portfolio, it’s completely fine to use the
-            buttons on the left. If you later want a working contact form
-            without a backend, use Netlify Forms or Formspree.
-          </p>
+          <form
+            className="mt-5 space-y-3"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+          >
+            {/* Netlify required */}
+            <input type="hidden" name="form-name" value="contact" />
 
-          <div className="mt-5 rounded-xl bg-slate-50 p-4 text-sm text-slate-700 dark:bg-slate-900 dark:text-slate-200">
-            <p className="font-medium">Tip:</p>
-            <p className="mt-1">
-              Make sure your GitHub profile has pinned projects and good README
-              files — recruiters click that first.
+            {/* Honeypot */}
+            <p className="hidden">
+              <label>
+                Don’t fill this out: <input name="bot-field" />
+              </label>
             </p>
-          </div>
 
-          {/* Optional Form (Only if you want it)
-          <form className="mt-6 space-y-3">
             <input
-              className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm dark:border-slate-700"
+              className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
               placeholder="Your name"
+              name="name"
+              autoComplete="name"
+              required
             />
+
             <input
-              className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm dark:border-slate-700"
+              className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
               placeholder="Your email"
               type="email"
+              name="email"
+              autoComplete="email"
+              required
             />
+
             <textarea
-              className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm dark:border-slate-700"
+              className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
               placeholder="Your message"
               rows={4}
+              name="message"
+              required
             />
-            <button className="rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white dark:bg-slate-100 dark:text-slate-900">
+
+            <button
+              type="submit"
+              className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white hover:opacity-90 dark:bg-slate-100 dark:text-slate-900"
+            >
               Send
             </button>
           </form>
-          */}
         </div>
       </div>
     </section>
