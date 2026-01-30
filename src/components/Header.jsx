@@ -11,9 +11,12 @@ export default function Header() {
         </a>
 
         <nav className="hidden gap-6 text-sm md:flex">
+          <a className="hover:underline" href="#experience">Experience</a>
           <a className="hover:underline" href="#projects">Projects</a>
           <a className="hover:underline" href="#about">About</a>
           <a className="hover:underline" href="#contact">Contact</a>
+          
+
         </nav>
 
         <button
