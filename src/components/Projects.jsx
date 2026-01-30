@@ -1,8 +1,10 @@
 import { projects } from "../data/projects";
+import { ExternalLink, Github } from "lucide-react";
+
 
 function ProjectCard({ project }) {
   return (
-    <div className="rounded-2xl border border-slate-200 p-5 transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800">
+    <div className="card card-hover p-5">
       <h3 className="text-lg font-semibold">{project.title}</h3>
       <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
         {project.description}
@@ -19,14 +21,28 @@ function ProjectCard({ project }) {
         ))}
       </div>
 
-      <div className="mt-5 flex gap-3 text-sm">
-        <a className="underline hover:opacity-80" href={project.live} target="_blank">
+      <div className="mt-5 flex gap-4 text-sm">
+        <a
+          className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-transparent transition hover:decoration-current hover:opacity-80"
+          href={project.live}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <ExternalLink size={16} className="opacity-80" aria-hidden="true" />
           Live
         </a>
-        <a className="underline hover:opacity-80" href={project.repo} target="_blank">
+
+        <a
+          className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-transparent transition hover:decoration-current hover:opacity-80"
+          href={project.repo}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Github size={16} className="opacity-80" aria-hidden="true" />
           Repo
         </a>
       </div>
+
     </div>
   );
 }

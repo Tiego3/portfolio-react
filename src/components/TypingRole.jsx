@@ -24,7 +24,7 @@ function usePrefersReducedMotion() {
 export default function TypingRole({
   roles = DEFAULT_ROLES,
   className = "",
-  typeSpeed = 55,
+  typeSpeed = 100,
   eraseSpeed = 35,
   pauseMs = 1100,
 }) {
