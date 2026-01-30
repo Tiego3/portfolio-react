@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global polish */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100;
+    @apply antialiased;
+  }
+
+  /* Typography defaults */
+  h1, h2, h3 {
+    @apply tracking-tight;
+  }
+
+  /* Link styling */
+  a {
+    @apply text-slate-900 dark:text-slate-100;
+  }
+
+  /* Nice selection */
+  ::selection {
+    background: rgba(124, 124, 248, 0.35);
+  }
+
+  /* Better focus ring for accessibility */
+  :focus-visible {
+    outline: 3px solid rgba(124, 124, 248, 0.55);
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
+}
