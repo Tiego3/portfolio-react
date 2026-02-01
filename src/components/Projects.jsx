@@ -50,15 +50,17 @@ function ProjectCard({ project }) {
 export default function Projects() {
   return (
     <section id="projects" className="mx-auto max-w-5xl px-4 py-16">
-      <h2 className="text-2xl font-bold">Projects</h2>
-      <p className="mt-2 text-slate-600 dark:text-slate-400">
-        A few things I’ve built recently.
-      </p>
+      <div className="text-center">
+        <h2 className="text-2xl font-bold">Projects</h2>
+        <p className="mt-2 text-slate-600 dark:text-slate-400">
+          A few things I’ve built.
+        </p>
 
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
-        {projects.map((p) => (
-          <ProjectCard key={p.title} project={p} />
-        ))}
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          {projects.map((p) => (
+            <ProjectCard key={p.title} project={p} />
+          ))}
+        </div>
       </div>
     </section>
   );

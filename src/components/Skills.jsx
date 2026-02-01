@@ -1,35 +1,47 @@
 const SKILL_CATEGORIES = [
   {
-    title: "Frontend",
+    title: "Software Development",
     items: [
-      "React (Vite)",
-      "Tailwind CSS",
-      "Responsive UI",
-      "Component architecture",
-      "Semantic HTML",
+      "C#",
+      "ASP.NET",
+      "JavaScript",
+      "HTML & CSS",
+      "SQL",
+      "Object-Oriented Programming (OOP)",
+      "Responsive Web Development",
     ],
   },
   {
-    title: "Testing / QA",
+    title: "Software Testing & Quality",
     items: [
-      "Test case design",
-      "Manual testing",
-      "Regression testing",
-      "Accessibility checks",
-      "Test automation basics",
+      "Manual Testing",
+      "Automated Testing",    
+      "Regression Testing",
+      "Exploratory Testing",      
+      "Defect Tracking",
+      "Test Case Design",
     ],
   },
+  
   {
-    title: "Tools / Workflow",
+    title: "Tools & Platforms",
     items: [
       "Git & GitHub",
-      "Netlify CI/CD",
-      "Debugging & devtools",
-      "REST APIs (basic)",
-      "Agile collaboration",
+      "Visual Studio",
+      "Jira",     
+    ],
+  },
+  {
+    title: "Methodologies",
+    items: [
+      "Agile / Scrum",
+      "SDLC",
+      "Design Thinking",
+     
     ],
   },
 ];
+
 
 function SkillsCard({ title, items }) {
   return (
@@ -58,8 +70,7 @@ export default function Skills() {
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-2xl font-semibold tracking-tight">Skills</h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-            A practical toolkit focused on building clean UI, shipping reliably, and
-            supporting quality through testing.
+            Technical skills grounded in building, validating, and improving reliable software solutions.
           </p>
         </div>
 

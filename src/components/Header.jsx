@@ -19,7 +19,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <a href="#top" className="font-semibold">
-          Your Name
+          Tiego Mathobela
         </a>
 
         <nav className="hidden gap-2 text-sm md:flex">

@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 export default function Contact() {
-  const email = "yourname@email.com"; // <-- change this
-  const github = "https://github.com/yourusername"; // <-- change this
-  const linkedin = "https://www.linkedin.com/in/yourusername/"; // <-- change this
+  const email = "tiegomathobela@email.com"; 
+  const github = "https://github.com/Tiego3";
+  const linkedin = "https://www.linkedin.com/in/tiego-m/"; 
 
   const [copied, setCopied] = useState(false);
 
@@ -18,109 +18,112 @@ export default function Contact() {
   };
 
   return (
+    
     <section id="contact" className="mx-auto max-w-5xl px-4 py-16">
-      <h2 className="text-2xl font-bold">Contact</h2>
+      <div className="text-center">
+        <h2 className="text-2xl font-bold">Contact</h2>
 
-      <p className="mt-2 max-w-2xl text-slate-600 dark:text-slate-400">
-        If you’d like to chat about a role, a project, or collaboration, feel
-        free to reach out. I’m open to junior / entry-level opportunities.
-      </p>
+        <p className="mt-2 max-w-2x2 text-slate-600 dark:text-slate-400 text-center">
+          If you’d like to chat about a role, a project, or collaboration, feel
+          free to reach out. I’m open to junior / entry-level opportunities.
+        </p>
 
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
-        {/* Left: Contact buttons */}
-        <div className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
-          <h3 className="font-semibold">Quick links</h3>
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          {/* Left: Contact buttons */}
+          <div className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
+            <h3 className="font-semibold">Quick links</h3>
 
-          <div className="mt-5 flex flex-col gap-3">
-            <a
-              href={`mailto:${email}`}
-              className="rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white hover:opacity-90 dark:bg-slate-100 dark:text-slate-900"
-            >
-              Email me
-            </a>
-
-            <button
-              onClick={copyEmail}
-              type="button"
-              className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-medium hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-900"
-            >
-              {copied ? "Copied" : "Copy email"}
-            </button>
-
-            <div className="mt-2 flex flex-wrap gap-3 text-sm">
+            <div className="mt-5 flex flex-col gap-3">
               <a
-                href={github}
-                target="_blank"
-                rel="noreferrer"
-                className="underline underline-offset-4 hover:opacity-80"
+                href={`mailto:${email}`}
+                className="rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white hover:opacity-90 dark:bg-slate-100 dark:text-slate-900"
               >
-                GitHub
+                Email me
               </a>
-              <a
-                href={linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="underline underline-offset-4 hover:opacity-80"
+
+              <button
+                onClick={copyEmail}
+                type="button"
+                className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-medium hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-900"
               >
-                LinkedIn
-              </a>
+                {copied ? "Copied" : "Copy email"}
+              </button>
+
+              <div className="mt-2 flex flex-wrap gap-3 text-sm">
+                <a
+                  href={github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline underline-offset-4 hover:opacity-80"
+                >
+                  GitHub
+                </a>
+                <a
+                  href={linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline underline-offset-4 hover:opacity-80"
+                >
+                  LinkedIn
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Right: Netlify form */}
-        <div className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
-          <h3 className="font-semibold">Send a message</h3>
+          {/* Right: Netlify form */}
+          <div className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
+            <h3 className="font-semibold">Send a message</h3>
 
-          <form
-            className="mt-5 space-y-3"
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-          >
-            {/* Netlify required */}
-            <input type="hidden" name="form-name" value="contact" />
-
-            {/* Honeypot */}
-            <p className="hidden">
-              <label>
-                Don’t fill this out: <input name="bot-field" />
-              </label>
-            </p>
-
-            <input
-              className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
-              placeholder="Your name"
-              name="name"
-              autoComplete="name"
-              required
-            />
-
-            <input
-              className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
-              placeholder="Your email"
-              type="email"
-              name="email"
-              autoComplete="email"
-              required
-            />
-
-            <textarea
-              className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
-              placeholder="Your message"
-              rows={4}
-              name="message"
-              required
-            />
-
-            <button
-              type="submit"
-              className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white hover:opacity-90 dark:bg-slate-100 dark:text-slate-900"
+            <form
+              className="mt-5 space-y-3"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
             >
-              Send
-            </button>
-          </form>
+              {/* Netlify required */}
+              <input type="hidden" name="form-name" value="contact" />
+
+              {/* Honeypot */}
+              <p className="hidden">
+                <label>
+                  Don’t fill this out: <input name="bot-field" />
+                </label>
+              </p>
+
+              <input
+                className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
+                placeholder="Your name"
+                name="name"
+                autoComplete="name"
+                required
+              />
+
+              <input
+                className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
+                placeholder="Your email"
+                type="email"
+                name="email"
+                autoComplete="email"
+                required
+              />
+
+              <textarea
+                className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
+                placeholder="Your message"
+                rows={4}
+                name="message"
+                required
+              />
+
+              <button
+                type="submit"
+                className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white hover:opacity-90 dark:bg-slate-100 dark:text-slate-900"
+              >
+                Send
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>

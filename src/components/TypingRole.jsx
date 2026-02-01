@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 const DEFAULT_ROLES = [
   "Software Developer",
   "Software Tester",
-  "Aspiring Data Scientist",
+ 
 ];
 
 function usePrefersReducedMotion() {

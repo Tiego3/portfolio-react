@@ -4,14 +4,16 @@ export default function About() {
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-2xl font-bold md:text-3xl">About</h2>
         <p className="mt-3 text-sm muted">
-          Clear communication. Solid fundamentals. Consistent progress.
+          Clear communication. Solid fundamentals. Consistent progress. Problem-solving
         </p>
+      </div>
 
-        <p className="mt-8 text-slate-700 dark:text-slate-300 leading-relaxed text-base md:text-lg">
-          I’m a junior software developer focused on building clean, responsive
-          interfaces with a strong emphasis on structure, usability, and
-          maintainable code. I enjoy taking a problem, breaking it down, and
-          shipping a simple solution that feels polished.
+      {/* Body text: left aligned + justified */}
+      <div className="mx-auto mt-8 max-w-3xl text-justify">
+        <p className="mt-5 text-slate-700 dark:text-slate-300 leading-relaxed">
+          I’m a software developer with a Diploma in IT (Software Development) and hands-on experience in quality assurance.
+          I’ve worked with C#, ASP.NET, SQL, HTML, CSS, and JavaScript, and I bring a strong testing mindset from my background in manual and automated testing. 
+          That experience shaped how I approach development: clear logic, clean code, and attention to real user behaviour. I’m comfortable collaborating in Agile teams, learning new tools quickly, and taking feedback seriously. My focus is growing as a developer while building a foundation in data science.
         </p>
 
         <p className="mt-5 text-slate-700 dark:text-slate-300 leading-relaxed">
@@ -19,25 +21,6 @@ export default function About() {
           to real projects, learn from experienced teammates, and grow through
           feedback, reviews, and hands-on delivery.
         </p>
-
-        {/* Keep these minimal for now — we’ll formalize in the Skills section */}
-        <div className="mt-8 flex flex-wrap justify-center gap-2">
-          {[
-            "React",
-            "JavaScript",
-            "Responsive UI",
-            "Component-based design",
-            "Git workflow",
-            "Testing basics",
-          ].map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-700 dark:border-slate-700 dark:text-slate-200"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
       </div>
     </section>
   );

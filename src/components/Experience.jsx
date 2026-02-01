@@ -1,44 +1,46 @@
 const experience = [
   {
-    title: "Junior Software Developer",
-    company: "NovaWorks Digital (Hypothetical)",
-    location: "Johannesburg (Hybrid)",
-    dates: "2025 — Present",
-    summary:
-      "Built and maintained UI components for internal tools and customer-facing features, with a focus on clarity, responsiveness, and reliable behavior.",
-    highlights: [
-      "Converted designs into reusable React components and improved consistency across pages.",
-      "Collaborated with a developer to fix UI bugs and improve accessibility and keyboard navigation.",
-      "Integrated simple API calls and handled loading and error states for a smoother user experience.",
-      "Refactored repetitive UI into shared components to reduce duplication and improve maintainability.",
-    ],
-  },
-  {
-    title: "Software Tester (QA Intern)",
-    company: "BrightLabs QA (Hypothetical)",
+    title: "Experience Lab Learner",
+    company: "Umuzi",
     location: "Remote",
-    dates: "2024 — 2025",
+    dates: "Jul 2025 — Dec 2025",
     summary:
-      "Supported testing and quality checks for web applications, helping identify issues early and improving release confidence.",
+      "Participate in a structured programme focused on professional readiness, applied technical skills, and career acceleration within a real-world work context.",
     highlights: [
-      "Executed functional and regression test cases and reported issues with clear reproduction steps.",
-      "Validated UI behavior across browsers and screen sizes to ensure a consistent experience.",
-      "Worked closely with a developer to verify fixes and reduce recurring issues.",
-      "Documented test results and helped keep test cases organized and updated.",
+      "Built professional and digital capabilities across areas including Design Thinking, responsible use of AI tools, financial literacy, and career readiness.",
+      "Participate in design thinking activities such as user research, problem framing, and prototyping using tools like Figma.",
+      "Perform data cleaning, basic analysis, and insight generation on real datasets.",
+      "Collaborate in team-based environments, presenting work clearly.",
     ],
   },
   {
-    title: "IT Support Assistant (Part-time)",
-    company: "Campus Tech Desk (Hypothetical)",
-    location: "On-site",
-    dates: "2023 — 2024",
+    title: "Software Quality Assurance Tester",
+    company: "Inspired Testing",
+    location: "Cape Town",
+    dates: "Mar 2019 – Feb 2020",
     summary:
-      "Provided technical support and basic troubleshooting while developing strong communication and problem-solving habits.",
+      "Validated functionality, accessibility, and reliability of web, desktop, and mobile applications while working closely with Agile delivery teams to support production-ready releases.",
     highlights: [
-      "Assisted users with basic troubleshooting and resolved routine issues efficiently.",
-      "Improved documentation for common fixes to reduce repeated support requests.",
-      "Supported device setup and software configuration for new users.",
-      "Learned to communicate technical steps clearly to non-technical users.",
+      "Designed and executed manual and automated test cases across web, desktop, and mobile applications, aligned with functional and accessibility requirements (WCAG).",
+      "Contributed to automated regression testing using Selenium and HP UFT, supporting continuous integration workflows.",
+      "Worked closely with developers, business analysts, and stakeholders in Agile teams to validate features and resolve defects.",
+      "Logged, tracked, and reported defects in Jira, providing clear reproduction steps and impact details.",
+      "Performed cross-browser, cross-device, and exploratory testing to ensure consistent behaviour and usability.",
+    ],
+  },
+  {
+    title: "Software Quality Assurance Tester",
+    company: "Dynamic Visual Technologies",
+    location: "Cape Town",
+    dates: "Jul 2015 – Feb 2019",
+    summary:
+      "Developed and maintained automated test suites to improve test coverage, reduce regression risk, and support stable software delivery",
+    highlights: [
+      "Built and executed automated test scripts for web and desktop applications using Selenium and HP UFT.",
+      "Supported regression testing efforts to maintain application stability after code changes.",
+      "Integrated automated test suites into Jenkins pipelines to support continuous integration and reporting.",
+      "Participated in Agile ceremonies including sprint planning, daily stand-ups, reviews, and retrospectives.",
+      "Collaborated with cross-functional teams to identify risks, troubleshoot issues, and improve test coverage.",
     ],
   },
 ];
