@@ -6,6 +6,7 @@ export default function Contact() {
   const linkedin = "https://www.linkedin.com/in/tiego-m/"; 
 
   const [copied, setCopied] = useState(false);
+  const [formStatus, setFormStatus] = useState('');
 
   const copyEmail = async () => {
     try {
@@ -17,19 +18,37 @@ export default function Contact() {
     }
   };
 
-  return (
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus('sending');
     
+    const formData = new FormData(e.target);
+    
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      });
+      setFormStatus('success');
+      e.target.reset();
+      setTimeout(() => setFormStatus(''), 3000);
+    } catch {
+      setFormStatus('error');
+    }
+  };
+
+  return (
     <section id="contact" className="mx-auto max-w-5xl px-4 py-16">
       <div className="text-center">
         <h2 className="text-2xl font-bold">Contact</h2>
 
-        <p className="mt-2 max-w-2x2 text-slate-600 dark:text-slate-400 text-center">
-          If you’d like to chat about a role, a project, or collaboration, feel
-          free to reach out. I’m open to junior / entry-level opportunities.
+        <p className="mt-2 max-w-2xl mx-auto text-slate-600 dark:text-slate-400">
+          If you'd like to chat about a role, a project, or collaboration, feel
+          free to reach out. I'm open to junior / entry-level opportunities.
         </p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {/* Left: Contact buttons */}
           <div className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
             <h3 className="font-semibold">Quick links</h3>
 
@@ -70,7 +89,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right: Netlify form */}
           <div className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
             <h3 className="font-semibold">Send a message</h3>
 
@@ -78,16 +96,13 @@ export default function Contact() {
               className="mt-5 space-y-3"
               name="contact"
               method="POST"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
             >
-              {/* Netlify required */}
               <input type="hidden" name="form-name" value="contact" />
 
-              {/* Honeypot */}
               <p className="hidden">
                 <label>
-                  Don’t fill this out: <input name="bot-field" />
+                  Don't fill this out: <input name="bot-field" />
                 </label>
               </p>
 
@@ -118,10 +133,23 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white hover:opacity-90 dark:bg-slate-100 dark:text-slate-900"
+                disabled={formStatus === 'sending'}
+                className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50 dark:bg-slate-100 dark:text-slate-900"
               >
-                Send
+                {formStatus === 'sending' ? 'Sending...' : 'Send'}
               </button>
+
+              {formStatus === 'success' && (
+                <p className="text-sm text-green-600 dark:text-green-400">
+                  Message sent successfully! I'll get back to you soon.
+                </p>
+              )}
+
+              {formStatus === 'error' && (
+                <p className="text-sm text-red-600 dark:text-red-400">
+                  Something went wrong. Please try again or email me directly.
+                </p>
+              )}
             </form>
           </div>
         </div>
