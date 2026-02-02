@@ -11,7 +11,7 @@ export const projects = [
     title: "Portfolio Website",
     description: "My personal portfolio with dark mode and project cards.",
     tech: ["React", "Vite", "Tailwind"],
-    live: "https://tiegomathobela.com",
+    live: "https://tiegomathobela.co.za",
     repo: "https://github.com/Tiego3/portfolio-react",
   },
 ];
