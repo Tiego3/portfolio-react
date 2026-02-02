@@ -1,16 +1,61 @@
-# React + Vite
+# Portfolio React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website built with React, Vite, and Tailwind CSS to showcase projects, skills, and professional experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Fast and optimized with Vite
+- Styled with Tailwind CSS
+- Fully responsive design
+- ESLint configuration for code quality
+- Clean and modern UI/UX
+- Easy to customize and deploy
 
-## React Compiler
+## Built With
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [React](https://reactjs.org/) - JavaScript library for building user interfaces
+- [Vite](https://vitejs.dev/) - Next generation frontend tooling
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [PostCSS](https://postcss.org/) - CSS transformation tool
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+portfolio-react/
+├── public/              # Static assets
+├── src/                 # Source files
+│   ├── components/      # React components
+│   ├── assets/          # Images, fonts, etc.
+│   ├── App.jsx          # Main App component
+│   ├── main.jsx         # Entry point
+│   └── index.css        # Global styles
+├── .gitignore
+├── eslint.config.js     # ESLint configuration
+├── index.html           # HTML template
+├── package.json         # Dependencies and scripts
+├── postcss.config.js    # PostCSS configuration
+├── tailwind.config.js   # Tailwind CSS configuration
+└── vite.config.js       # Vite configuration
+```
+
+## Technologies & Tools
+
+### Frontend
+- **React** - Component-based UI development
+- **Vite** - Build tool and dev server with HMR (Hot Module Replacement)
+- **Tailwind CSS** - Utility-first CSS framework for rapid styling
+
+### Code Quality
+- **ESLint** - Code linting and quality assurance
+- **PostCSS** - CSS transformation and optimization
+
+## Author
+
+**Tiego3**
+
+- GitHub: [@Tiego3](https://github.com/Tiego3)
+- Portfolio: https://tiegomathobela.co.za/
+
+---
+
+Made with React
