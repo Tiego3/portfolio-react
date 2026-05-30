@@ -74,26 +74,34 @@ function VantaBg() {
     const isDark = () => document.documentElement.classList.contains("dark");
 
     const init = async () => {
-      if (effectRef.current) {
-        effectRef.current.destroy();
-        effectRef.current = null;
+      try {
+        if (effectRef.current) {
+          effectRef.current.destroy();
+          effectRef.current = null;
+        }
+        if (!ref.current) return;
+
+        const THREE = await import("three");
+        const { default: NET } = await import("vanta/dist/vanta.net.min.js");
+
+        if (!ref.current) return;
+
+        // THREE.VertexColors was removed in r134; polyfill so Vanta's LineBasicMaterial works
+        if (THREE.VertexColors === undefined) THREE.VertexColors = 2;
+
+        effectRef.current = NET({
+          el: ref.current,
+          THREE,
+          color: 0x7c7cf8,
+          backgroundColor: isDark() ? 0x020617 : 0xf8fafc,
+          points: 10.0,
+          maxDistance: 26.0,
+          spacing: 16.0,
+          showDots: true,
+        });
+      } catch (err) {
+        console.error("[VantaBg] init failed:", err);
       }
-      if (!ref.current) return;
-      const [THREE, { default: NET }] = await Promise.all([
-        import("three"),
-        import("vanta/dist/vanta.net.min"),
-      ]);
-      if (!ref.current) return;
-      effectRef.current = NET({
-        el: ref.current,
-        THREE,
-        color: 0x7c7cf8,
-        backgroundColor: isDark() ? 0x020617 : 0xf8fafc,
-        points: 10.0,
-        maxDistance: 26.0,
-        spacing: 16.0,
-        showDots: true,
-      });
     };
 
     init();
@@ -124,7 +132,7 @@ export default function Hero() {
   const parallaxRef = useParallaxScroll(0.15);
 
   return (
-    <section id="top" className="container-x section-y relative overflow-hidden">
+    <section id="top" className="container-x section-y relative overflow-hidden isolate">
       <VantaBg />
 
       {/* Parallax decorative orb — sits on top of Vanta */}

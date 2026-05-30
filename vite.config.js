@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: ["three", "vanta/dist/vanta.net.min"],
+    include: ["three", "vanta/dist/vanta.net.min.js"],
   },
 })
