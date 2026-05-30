@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Github, Linkedin, Mail, Copy, Check } from "lucide-react";
-import useScrollReveal from "../hooks/useScrollReveal";
+import { Reveal } from "./Reveal";
 
 const EMAIL = "tiegomathobela@email.com";
 const GITHUB = "https://github.com/Tiego3";
@@ -9,10 +9,6 @@ const LINKEDIN = "https://www.linkedin.com/in/tiego-m/";
 export default function Contact() {
   const [copied, setCopied] = useState(false);
   const [formStatus, setFormStatus] = useState("");
-
-  const headerRef = useScrollReveal();
-  const formRef = useScrollReveal();
-  const linksRef = useScrollReveal();
 
   const copyEmail = async () => {
     try {
@@ -44,16 +40,16 @@ export default function Contact() {
 
   return (
     <section id="contact" className="container-x section-y">
-      <div ref={headerRef} className="reveal mx-auto max-w-2xl text-center">
+      <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="text-2xl font-bold">Contact</h2>
         <p className="mt-2 text-slate-600 dark:text-slate-400">
           Open to roles, collaborations, or just a conversation.
         </p>
-      </div>
+      </Reveal>
 
       <div className="mt-10 mx-auto max-w-3xl grid gap-6 md:grid-cols-2">
         {/* Links panel */}
-        <div ref={linksRef} className="reveal contact-panel" style={{ "--delay": "80ms" }}>
+        <Reveal delay={80} className="contact-panel">
           <h3 className="text-sm font-semibold tracking-tight">Reach out directly</h3>
 
           <a href={`mailto:${EMAIL}`} className="contact-link mt-5">
@@ -97,10 +93,10 @@ export default function Contact() {
               </a>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Form panel */}
-        <div ref={formRef} className="reveal contact-panel" style={{ "--delay": "160ms" }}>
+        <Reveal delay={160} className="contact-panel">
           <h3 className="text-sm font-semibold tracking-tight">Send a message</h3>
 
           {formStatus === "success" ? (
@@ -160,7 +156,7 @@ export default function Contact() {
               )}
             </form>
           )}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

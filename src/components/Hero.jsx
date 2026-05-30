@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import TypingRole from "./TypingRole";
-import useScrollReveal from "../hooks/useScrollReveal";
+import { Reveal } from "./Reveal";
 import { useParallaxScroll } from "../hooks/useParallax";
 import useMagneticButton from "../hooks/useMagneticButton";
 
@@ -63,20 +63,82 @@ function Hero3DCard({ children }) {
   );
 }
 
+function VantaBg() {
+  const ref = useRef(null);
+  const effectRef = useRef(null);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const isDark = () => document.documentElement.classList.contains("dark");
+
+    const init = async () => {
+      if (effectRef.current) {
+        effectRef.current.destroy();
+        effectRef.current = null;
+      }
+      if (!ref.current) return;
+      const [THREE, { default: NET }] = await Promise.all([
+        import("three"),
+        import("vanta/dist/vanta.net.min"),
+      ]);
+      if (!ref.current) return;
+      effectRef.current = NET({
+        el: ref.current,
+        THREE,
+        color: 0x7c7cf8,
+        backgroundColor: isDark() ? 0x020617 : 0xf8fafc,
+        points: 7.0,
+        maxDistance: 22.0,
+        spacing: 18.0,
+        showDots: true,
+      });
+    };
+
+    init();
+
+    // Re-init when dark/light class toggles
+    const observer = new MutationObserver(init);
+    observer.observe(document.documentElement, { attributeFilter: ["class"] });
+
+    return () => {
+      observer.disconnect();
+      if (effectRef.current) {
+        effectRef.current.destroy();
+        effectRef.current = null;
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="absolute inset-0 -z-10 opacity-70 dark:opacity-50"
+      aria-hidden="true"
+    />
+  );
+}
+
 export default function Hero() {
-  const revealRef = useScrollReveal({ threshold: 0.05, rootMargin: "0px" });
   const parallaxRef = useParallaxScroll(0.15);
 
   return (
     <section id="top" className="container-x section-y relative overflow-hidden">
-      {/* Parallax decorative orb */}
+      <VantaBg />
+
+      {/* Parallax decorative orb — sits on top of Vanta */}
       <div
         ref={parallaxRef}
         aria-hidden="true"
         className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-accent/5 blur-[80px]"
       />
 
-      <div ref={revealRef} className="reveal relative mx-auto max-w-3xl text-center">
+      <Reveal
+        className="relative mx-auto max-w-3xl text-center"
+        margin="0px"
+        amount={0.05}
+      >
         <Hero3DCard>
           <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-6xl">
             Hi, I'm <span className="text-accent">Tiego Mathobela</span>.
@@ -110,7 +172,7 @@ export default function Hero() {
             Download CV
           </MagneticBtn>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

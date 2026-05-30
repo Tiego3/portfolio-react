@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useLenis from "./hooks/useLenis";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Experience from "./components/Experience";
@@ -12,6 +13,7 @@ import CustomCursor from "./components/CustomCursor";
 import BackToTop from "./components/BackToTop";
 
 export default function App() {
+  useLenis();
   const [showSplash, setShowSplash] = useState(
     () => !sessionStorage.getItem("splash-seen")
   );

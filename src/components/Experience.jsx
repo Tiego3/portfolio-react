@@ -1,4 +1,4 @@
-import useScrollReveal from "../hooks/useScrollReveal";
+import { Reveal } from "./Reveal";
 
 const experience = [
   {
@@ -48,9 +48,8 @@ const experience = [
 ];
 
 function ExperienceCard({ item, delay }) {
-  const ref = useScrollReveal();
   return (
-    <div ref={ref} className="reveal relative pl-10" style={{ "--delay": `${delay}ms` }}>
+    <Reveal delay={delay} className="relative pl-10">
       <div className="absolute left-0 top-4">
         <div className="h-3 w-3 rounded-full bg-accent shadow-[0_0_0_6px_rgba(124,124,248,0.12)]" />
       </div>
@@ -79,21 +78,19 @@ function ExperienceCard({ item, delay }) {
           ))}
         </ul>
       </div>
-    </div>
+    </Reveal>
   );
 }
 
 export default function Experience() {
-  const headerRef = useScrollReveal();
-
   return (
     <section id="experience" className="container-x section-y">
-      <div ref={headerRef} className="reveal mx-auto max-w-3xl text-center">
+      <Reveal className="mx-auto max-w-3xl text-center">
         <h2 className="text-2xl font-bold md:text-3xl">Experience</h2>
         <p className="mt-3 text-slate-700 dark:text-slate-300">
           A snapshot of responsibilities, outcomes, and collaboration.
         </p>
-      </div>
+      </Reveal>
 
       <div className="relative mx-auto mt-10 max-w-4xl">
         <div className="absolute left-[5px] top-0 h-full w-px bg-slate-200 dark:bg-slate-800" />

@@ -1,18 +1,13 @@
 import { ExternalLink, Github } from "lucide-react";
 import { projects } from "../data/projects";
-import useScrollReveal from "../hooks/useScrollReveal";
+import { Reveal } from "./Reveal";
 import { useCardTilt } from "../hooks/useParallax";
 
 function ProjectCard({ project, delay }) {
-  const revealRef = useScrollReveal();
   const tiltRef = useCardTilt(6);
 
   return (
-    <div
-      ref={revealRef}
-      className="reveal project-card"
-      style={{ "--delay": `${delay}ms` }}
-    >
+    <Reveal delay={delay} className="project-card">
       <div ref={tiltRef} className="project-card__inner">
         {/* Gradient image area */}
         <div
@@ -63,21 +58,19 @@ function ProjectCard({ project, delay }) {
           </div>
         </div>
       </div>
-    </div>
+    </Reveal>
   );
 }
 
 export default function Projects() {
-  const headerRef = useScrollReveal();
-
   return (
     <section id="projects" className="container-x section-y">
-      <div ref={headerRef} className="reveal mx-auto max-w-2xl text-center">
+      <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="text-2xl font-bold">Projects</h2>
         <p className="mt-2 text-slate-600 dark:text-slate-400">
-          Things I've built — and one thing I'm planning to.
+          A selection of things I've built.
         </p>
-      </div>
+      </Reveal>
 
       <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, i) => (

@@ -1,4 +1,5 @@
-import useScrollReveal from "../hooks/useScrollReveal";
+import { motion } from "motion/react";
+import { Reveal } from "./Reveal";
 
 const SKILL_CATEGORIES = [
   {
@@ -32,19 +33,21 @@ const SKILL_CATEGORIES = [
 
 function SkillTag({ label, delay }) {
   return (
-    <span
-      className="skill-tag reveal-scale"
-      style={{ "--delay": `${delay}ms` }}
+    <motion.span
+      className="skill-tag"
+      initial={{ opacity: 0, scale: 0.88 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ type: "spring", stiffness: 80, damping: 14, delay: delay / 1000 }}
     >
       {label}
-    </span>
+    </motion.span>
   );
 }
 
 function SkillCluster({ category, baseDelay }) {
-  const ref = useScrollReveal();
   return (
-    <div ref={ref} className="reveal skill-cluster" style={{ "--delay": `${baseDelay}ms` }}>
+    <Reveal delay={baseDelay} className="skill-cluster">
       <div className="skill-cluster__header">
         <span className="skill-cluster__emoji" aria-hidden="true">{category.emoji}</span>
         <h3 className="skill-cluster__title">{category.title}</h3>
@@ -54,22 +57,20 @@ function SkillCluster({ category, baseDelay }) {
           <SkillTag key={item} label={item} delay={baseDelay + i * 40} />
         ))}
       </div>
-    </div>
+    </Reveal>
   );
 }
 
 export default function Skills() {
-  const headerRef = useScrollReveal();
-
   return (
     <section id="skills" className="section-y">
       <div className="container-x">
-        <div ref={headerRef} className="reveal mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-2xl font-semibold tracking-tight">Skills</h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
             Technical skills grounded in building, validating, and improving reliable software.
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {SKILL_CATEGORIES.map((cat, i) => (
