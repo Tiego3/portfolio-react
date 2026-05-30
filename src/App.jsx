@@ -9,6 +9,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import SplashScreen from "./components/SplashScreen";
 import CustomCursor from "./components/CustomCursor";
+import BackToTop from "./components/BackToTop";
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(
@@ -34,6 +35,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }

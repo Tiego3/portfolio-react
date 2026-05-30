@@ -210,6 +210,49 @@
   border-color: rgba(124, 124, 248, 0.8);
 }
 
+/* ── Back to Top ───────────────────────────────────────────────────── */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: #7c7cf8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.2s ease;
+  box-shadow: 0 4px 20px rgba(124, 124, 248, 0.35);
+}
+
+.back-to-top:hover {
+  background: #6363e9;
+}
+
+.back-to-top--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: opacity 0.2s ease;
+    transform: none;
+  }
+}
+
 /* ── Global polish ─────────────────────────────────────────────────── */
 @layer base {
   html {
