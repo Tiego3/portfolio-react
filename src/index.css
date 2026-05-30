@@ -166,6 +166,12 @@
   transform: scale(1);
 }
 
+/* When a revealed cluster contains reveal-scale tags, cascade the reveal */
+.reveal.revealed .reveal-scale {
+  opacity: 1;
+  transform: scale(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-left,

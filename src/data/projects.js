@@ -20,13 +20,13 @@ export const projects = [
     concept: false,
   },
   {
-    title: "QA Dashboard",
+    title: "Habbify",
     description:
-      "A concept tool for QA teams: aggregate test results from multiple runs, visualise defect trends, and surface flaky tests — built to eliminate the spreadsheet bottleneck.",
-    tech: ["React", "Recharts", "TypeScript", "REST API"],
+      "A personal productivity app for building lasting habits and managing tasks. Track streaks, log daily completions, and visualise progress over time — with user auth, theme customisation, and achievement badges.",
+    tech: ["Python", "Django", "SQLite", "Chart.js"],
     live: "#",
-    repo: "#",
-    accent: "#4F4FCC",
-    concept: true,
+    repo: "https://github.com/Tiego3/habbify",
+    accent: "#2D9B6E",
+    concept: false,
   },
 ];
