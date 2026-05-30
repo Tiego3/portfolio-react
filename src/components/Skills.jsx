@@ -1,82 +1,79 @@
+import useScrollReveal from "../hooks/useScrollReveal";
+
 const SKILL_CATEGORIES = [
   {
-    title: "Software Development",
-    items: [
-      "C#",
-      "ASP.NET",
-      "JavaScript",
-      "HTML & CSS",
-      "SQL",
-      "Object-Oriented Programming (OOP)",
-      "Responsive Web Development",
-    ],
+    title: "Development",
+    emoji: "⌨️",
+    items: ["C#", "ASP.NET", "JavaScript", "HTML & CSS", "SQL", "OOP", "Responsive Web"],
   },
   {
-    title: "Software Testing & Quality",
+    title: "Testing & Quality",
+    emoji: "🔍",
     items: [
       "Manual Testing",
-      "Automated Testing",    
+      "Automated Testing",
       "Regression Testing",
-      "Exploratory Testing",      
+      "Exploratory Testing",
       "Defect Tracking",
       "Test Case Design",
     ],
   },
-  
   {
     title: "Tools & Platforms",
-    items: [
-      "Git & GitHub",
-      "Visual Studio",
-      "Jira",     
-    ],
+    emoji: "🛠",
+    items: ["Git & GitHub", "Visual Studio", "Jira", "Selenium", "HP UFT", "Jenkins"],
   },
   {
     title: "Methodologies",
-    items: [
-      "Agile / Scrum",
-      "SDLC",
-      "Design Thinking",
-     
-    ],
+    emoji: "♾️",
+    items: ["Agile / Scrum", "SDLC", "Design Thinking", "CI/CD"],
   },
 ];
 
-
-function SkillsCard({ title, items }) {
+function SkillTag({ label, delay }) {
   return (
-    <div className="card p-6">
-      <h3 className="text-base font-semibold tracking-tight">{title}</h3>
+    <span
+      className="skill-tag reveal-scale"
+      style={{ "--delay": `${delay}ms` }}
+    >
+      {label}
+    </span>
+  );
+}
 
-      <ul className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
-        {items.map((item) => (
-          <li key={item} className="flex gap-2">
-            <span
-              aria-hidden="true"
-              className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500"
-            />
-            <span>{item}</span>
-          </li>
+function SkillCluster({ category, baseDelay }) {
+  const ref = useScrollReveal();
+  return (
+    <div ref={ref} className="reveal skill-cluster" style={{ "--delay": `${baseDelay}ms` }}>
+      <div className="skill-cluster__header">
+        <span className="skill-cluster__emoji" aria-hidden="true">{category.emoji}</span>
+        <h3 className="skill-cluster__title">{category.title}</h3>
+      </div>
+      <div className="skill-cluster__tags">
+        {category.items.map((item, i) => (
+          <SkillTag key={item} label={item} delay={baseDelay + i * 40} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
 
 export default function Skills() {
+  const headerRef = useScrollReveal();
+
   return (
     <section id="skills" className="section-y">
       <div className="container-x">
-        <div className="mx-auto max-w-2xl text-center">
+        <div ref={headerRef} className="reveal mx-auto max-w-2xl text-center">
           <h2 className="text-2xl font-semibold tracking-tight">Skills</h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-            Technical skills grounded in building, validating, and improving reliable software solutions.
+            Technical skills grounded in building, validating, and improving reliable software.
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {SKILL_CATEGORIES.map((cat) => (
-            <SkillsCard key={cat.title} title={cat.title} items={cat.items} />
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {SKILL_CATEGORIES.map((cat, i) => (
+            <SkillCluster key={cat.title} category={cat} baseDelay={i * 80} />
           ))}
         </div>
       </div>

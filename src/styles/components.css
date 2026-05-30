@@ -113,4 +113,37 @@
   .muted {
     @apply text-slate-600 dark:text-slate-400;
   }
+
+  /* ── Skills ──────────────────────────────────────────────────── */
+  .skill-cluster {
+    @apply rounded-2xl border border-slate-200 bg-white/70 p-5;
+    @apply dark:border-slate-800 dark:bg-slate-950/40;
+  }
+
+  .skill-cluster__header {
+    @apply flex items-center gap-2 mb-4;
+  }
+
+  .skill-cluster__emoji {
+    @apply text-lg leading-none;
+  }
+
+  .skill-cluster__title {
+    @apply text-sm font-semibold tracking-tight text-slate-800 dark:text-slate-200;
+  }
+
+  .skill-cluster__tags {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .skill-tag {
+    @apply inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700;
+    @apply dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300;
+    @apply transition-all duration-200 ease-out cursor-default;
+  }
+
+  .skill-tag:hover {
+    @apply border-accent/50 bg-accent/5 text-accent;
+    transform: translateY(-2px);
+  }
 }
