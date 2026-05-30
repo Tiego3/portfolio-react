@@ -226,4 +226,81 @@
     @apply inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 dark:text-slate-400;
     @apply transition-colors duration-200 hover:text-accent;
   }
+
+  /* ── Contact ──────────────────────────────────────────────────── */
+  .contact-panel {
+    @apply rounded-2xl border border-slate-200 bg-white/70 p-6;
+    @apply dark:border-slate-800 dark:bg-slate-950/40;
+  }
+
+  .contact-link {
+    @apply flex items-center gap-3 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium;
+    @apply transition-all duration-200 ease-out;
+    @apply text-slate-700 dark:text-slate-300 dark:border-slate-700;
+    @apply hover:border-accent/40 hover:bg-accent/5 hover:text-accent;
+  }
+
+  .contact-link__icon {
+    @apply flex-shrink-0 text-slate-400 dark:text-slate-500;
+  }
+
+  .contact-link__label {
+    @apply text-left;
+  }
+
+  .contact-input {
+    @apply w-full rounded-xl border border-slate-200 bg-transparent px-3 py-2.5 text-sm;
+    @apply outline-none transition duration-200;
+    @apply placeholder:text-slate-400 dark:border-slate-700 dark:placeholder:text-slate-600;
+    @apply focus:border-accent/50 focus:ring-2 focus:ring-accent/10;
+  }
+
+  .contact-submit {
+    @apply w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:bg-slate-800 hover:shadow-soft;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white;
+  }
+
+  .social-icon-link {
+    @apply flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200;
+    @apply text-slate-600 dark:text-slate-400 dark:border-slate-700;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:border-accent/50 hover:bg-accent/5 hover:text-accent;
+    @apply hover:-translate-y-0.5;
+  }
+
+  /* Success state */
+  .contact-success {
+    @apply mt-6 flex flex-col items-center justify-center gap-3 py-8;
+    animation: fade-in-success 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .contact-success__icon {
+    @apply flex h-12 w-12 items-center justify-center rounded-full bg-green-50 text-green-600;
+    @apply dark:bg-green-950/40 dark:text-green-400;
+    animation: pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .contact-success__text {
+    @apply text-sm text-slate-600 dark:text-slate-400;
+  }
+
+  @keyframes pop-in {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes fade-in-success {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-success,
+    .contact-success__icon {
+      animation: none;
+    }
+  }
 }

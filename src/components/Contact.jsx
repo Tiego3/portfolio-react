@@ -1,97 +1,116 @@
 import { useState } from "react";
+import { Github, Linkedin, Mail, Copy, Check } from "lucide-react";
+import useScrollReveal from "../hooks/useScrollReveal";
+
+const EMAIL = "tiegomathobela@email.com";
+const GITHUB = "https://github.com/Tiego3";
+const LINKEDIN = "https://www.linkedin.com/in/tiego-m/";
 
 export default function Contact() {
-  const email = "tiegomathobela@email.com"; 
-  const github = "https://github.com/Tiego3";
-  const linkedin = "https://www.linkedin.com/in/tiego-m/"; 
-
   const [copied, setCopied] = useState(false);
-  const [formStatus, setFormStatus] = useState('');
+  const [formStatus, setFormStatus] = useState("");
+
+  const headerRef = useScrollReveal();
+  const formRef = useScrollReveal();
+  const linksRef = useScrollReveal();
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(email);
+      await navigator.clipboard.writeText(EMAIL);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
+      setTimeout(() => setCopied(false), 2000);
     } catch {
-      alert("Could not copy email. Please copy it manually: " + email);
+      alert("Please copy manually: " + EMAIL);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormStatus('sending');
-    
+    setFormStatus("sending");
     const formData = new FormData(e.target);
-    
     try {
-      await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
       });
-      setFormStatus('success');
+      setFormStatus("success");
       e.target.reset();
-      setTimeout(() => setFormStatus(''), 3000);
+      setTimeout(() => setFormStatus(""), 4000);
     } catch {
-      setFormStatus('error');
+      setFormStatus("error");
     }
   };
 
   return (
-    <section id="contact" className="mx-auto max-w-5xl px-4 py-16">
-      <div className="text-center">
+    <section id="contact" className="container-x section-y">
+      <div ref={headerRef} className="reveal mx-auto max-w-2xl text-center">
         <h2 className="text-2xl font-bold">Contact</h2>
-
-        <p className="mt-2 max-w-2xl mx-auto text-slate-600 dark:text-slate-400">
-          If you'd like to chat about a role, a project, or collaboration, feel
-          free to reach out. I'm open to junior / entry-level opportunities.
+        <p className="mt-2 text-slate-600 dark:text-slate-400">
+          Open to roles, collaborations, or just a conversation.
         </p>
+      </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
-            <h3 className="font-semibold">Quick links</h3>
+      <div className="mt-10 mx-auto max-w-3xl grid gap-6 md:grid-cols-2">
+        {/* Links panel */}
+        <div ref={linksRef} className="reveal contact-panel" style={{ "--delay": "80ms" }}>
+          <h3 className="text-sm font-semibold tracking-tight">Reach out directly</h3>
 
-            <div className="mt-5 flex flex-col gap-3">
+          <a href={`mailto:${EMAIL}`} className="contact-link mt-5">
+            <span className="contact-link__icon"><Mail size={16} aria-hidden="true" /></span>
+            <span className="contact-link__label">Email me</span>
+          </a>
+
+          <button
+            type="button"
+            onClick={copyEmail}
+            className="contact-link mt-2"
+          >
+            <span className="contact-link__icon">
+              {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+            </span>
+            <span className="contact-link__label">
+              {copied ? "Copied to clipboard" : "Copy email address"}
+            </span>
+          </button>
+
+          <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800">
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-500 mb-3 uppercase tracking-widest">Find me on</p>
+            <div className="flex gap-3">
               <a
-                href={`mailto:${email}`}
-                className="rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white hover:opacity-90 dark:bg-slate-100 dark:text-slate-900"
+                href={GITHUB}
+                target="_blank"
+                rel="noreferrer"
+                className="social-icon-link"
+                aria-label="GitHub"
               >
-                Email me
+                <Github size={18} aria-hidden="true" />
               </a>
-
-              <button
-                onClick={copyEmail}
-                type="button"
-                className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-medium hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-900"
+              <a
+                href={LINKEDIN}
+                target="_blank"
+                rel="noreferrer"
+                className="social-icon-link"
+                aria-label="LinkedIn"
               >
-                {copied ? "Copied" : "Copy email"}
-              </button>
-
-              <div className="mt-2 flex flex-wrap gap-3 text-sm">
-                <a
-                  href={github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline underline-offset-4 hover:opacity-80"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline underline-offset-4 hover:opacity-80"
-                >
-                  LinkedIn
-                </a>
-              </div>
+                <Linkedin size={18} aria-hidden="true" />
+              </a>
             </div>
           </div>
+        </div>
 
-          <div className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
-            <h3 className="font-semibold">Send a message</h3>
+        {/* Form panel */}
+        <div ref={formRef} className="reveal contact-panel" style={{ "--delay": "160ms" }}>
+          <h3 className="text-sm font-semibold tracking-tight">Send a message</h3>
 
+          {formStatus === "success" ? (
+            <div className="contact-success">
+              <div className="contact-success__icon" aria-hidden="true">
+                <Check size={24} strokeWidth={2.5} />
+              </div>
+              <p className="contact-success__text">Message sent — I'll get back to you soon.</p>
+            </div>
+          ) : (
             <form
               className="mt-5 space-y-3"
               name="contact"
@@ -99,32 +118,27 @@ export default function Contact() {
               onSubmit={handleSubmit}
             >
               <input type="hidden" name="form-name" value="contact" />
-
               <p className="hidden">
-                <label>
-                  Don't fill this out: <input name="bot-field" />
-                </label>
+                <label>Don't fill: <input name="bot-field" /></label>
               </p>
 
               <input
-                className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
+                className="contact-input"
                 placeholder="Your name"
                 name="name"
                 autoComplete="name"
                 required
               />
-
               <input
-                className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
+                className="contact-input"
                 placeholder="Your email"
                 type="email"
                 name="email"
                 autoComplete="email"
                 required
               />
-
               <textarea
-                className="w-full rounded-xl border border-slate-300 bg-transparent px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500/30 dark:border-slate-700"
+                className="contact-input"
                 placeholder="Your message"
                 rows={4}
                 name="message"
@@ -133,25 +147,19 @@ export default function Contact() {
 
               <button
                 type="submit"
-                disabled={formStatus === 'sending'}
-                className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50 dark:bg-slate-100 dark:text-slate-900"
+                disabled={formStatus === "sending"}
+                className="contact-submit"
               >
-                {formStatus === 'sending' ? 'Sending...' : 'Send'}
+                {formStatus === "sending" ? "Sending…" : "Send message"}
               </button>
 
-              {formStatus === 'success' && (
-                <p className="text-sm text-green-600 dark:text-green-400">
-                  Message sent successfully! I'll get back to you soon.
-                </p>
-              )}
-
-              {formStatus === 'error' && (
-                <p className="text-sm text-red-600 dark:text-red-400">
-                  Something went wrong. Please try again or email me directly.
+              {formStatus === "error" && (
+                <p className="text-xs text-red-500 dark:text-red-400">
+                  Something went wrong — email me directly instead.
                 </p>
               )}
             </form>
-          </div>
+          )}
         </div>
       </div>
     </section>
