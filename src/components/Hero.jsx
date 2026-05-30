@@ -1,8 +1,35 @@
 import { useEffect, useRef } from "react";
+import { ParticlesProvider, Particles } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 import TypingRole from "./TypingRole";
 import { Reveal } from "./Reveal";
 import { useParallaxScroll } from "../hooks/useParallax";
 import useMagneticButton from "../hooks/useMagneticButton";
+
+// Stable reference required by ParticlesProvider
+async function initEngine(engine) {
+  await loadSlim(engine);
+}
+
+const PARTICLE_OPTIONS = {
+  background: { color: { value: "transparent" } },
+  fpsLimit: 60,
+  particles: {
+    color: { value: "#7c7cf8" },
+    links: {
+      color: "#7c7cf8",
+      distance: 150,
+      enable: true,
+      opacity: 0.25,
+      width: 1,
+    },
+    move: { enable: true, speed: 0.8 },
+    number: { value: 55, density: { enable: true } },
+    opacity: { value: 0.35 },
+    size: { value: { min: 1, max: 2.5 } },
+  },
+  detectRetina: true,
+};
 
 function MagneticBtn({ href, className, children, target, rel }) {
   const ref = useMagneticButton(5);
@@ -63,68 +90,15 @@ function Hero3DCard({ children }) {
   );
 }
 
-function VantaBg() {
-  const ref = useRef(null);
-  const effectRef = useRef(null);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
-
-    const isDark = () => document.documentElement.classList.contains("dark");
-
-    const init = async () => {
-      try {
-        if (effectRef.current) {
-          effectRef.current.destroy();
-          effectRef.current = null;
-        }
-        if (!ref.current) return;
-
-        const THREE = await import("three");
-        const { default: NET } = await import("vanta/dist/vanta.net.min.js");
-
-        if (!ref.current) return;
-
-        // THREE.VertexColors was removed in r134; polyfill so Vanta's LineBasicMaterial works
-        if (THREE.VertexColors === undefined) THREE.VertexColors = 2;
-
-        effectRef.current = NET({
-          el: ref.current,
-          THREE,
-          color: 0x7c7cf8,
-          backgroundColor: isDark() ? 0x020617 : 0xf8fafc,
-          points: 10.0,
-          maxDistance: 26.0,
-          spacing: 16.0,
-          showDots: true,
-        });
-      } catch (err) {
-        console.error("[VantaBg] init failed:", err);
-      }
-    };
-
-    init();
-
-    // Re-init when dark/light class toggles
-    const observer = new MutationObserver(init);
-    observer.observe(document.documentElement, { attributeFilter: ["class"] });
-
-    return () => {
-      observer.disconnect();
-      if (effectRef.current) {
-        effectRef.current.destroy();
-        effectRef.current = null;
-      }
-    };
-  }, []);
-
+function ParticleBg() {
   return (
-    <div
-      ref={ref}
-      className="absolute inset-0 -z-10 opacity-95 dark:opacity-80"
-      aria-hidden="true"
-    />
+    <ParticlesProvider init={initEngine}>
+      <Particles
+        id="hero-particles"
+        className="absolute inset-0 -z-10"
+        options={PARTICLE_OPTIONS}
+      />
+    </ParticlesProvider>
   );
 }
 
@@ -133,9 +107,9 @@ export default function Hero() {
 
   return (
     <section id="top" className="container-x section-y relative overflow-hidden isolate">
-      <VantaBg />
+      <ParticleBg />
 
-      {/* Parallax decorative orb — sits on top of Vanta */}
+      {/* Parallax decorative orb */}
       <div
         ref={parallaxRef}
         aria-hidden="true"
