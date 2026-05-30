@@ -181,6 +181,40 @@
   }
 }
 
+/* ── Custom Cursor ─────────────────────────────────────────────────── */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #7c7cf8;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(124, 124, 248, 0.55);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform;
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+}
+
+.cursor-ring--hover {
+  width: 52px;
+  height: 52px;
+  border-color: rgba(124, 124, 248, 0.8);
+}
+
 /* ── Global polish ─────────────────────────────────────────────────── */
 @layer base {
   html {
