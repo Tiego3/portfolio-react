@@ -1,66 +1,88 @@
-import { projects } from "../data/projects";
 import { ExternalLink, Github } from "lucide-react";
+import { projects } from "../data/projects";
+import useScrollReveal from "../hooks/useScrollReveal";
+import { useCardTilt } from "../hooks/useParallax";
 
+function ProjectCard({ project, delay }) {
+  const revealRef = useScrollReveal();
+  const tiltRef = useCardTilt(6);
 
-function ProjectCard({ project }) {
   return (
-    <div className="card card-hover p-5">
-      <h3 className="text-lg font-semibold">{project.title}</h3>
-      <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-        {project.description}
-      </p>
-
-      <div className="mt-4 flex flex-wrap gap-2">
-        {project.tech.map((t) => (
-          <span
-            key={t}
-            className="rounded-full border border-slate-200 px-3 py-1 text-xs dark:border-slate-700"
-          >
-            {t}
-          </span>
-        ))}
-      </div>
-
-      <div className="mt-5 flex gap-4 text-sm">
-        <a
-          className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-transparent transition hover:decoration-current hover:opacity-80"
-          href={project.live}
-          target="_blank"
-          rel="noreferrer"
+    <div
+      ref={revealRef}
+      className="reveal project-card"
+      style={{ "--delay": `${delay}ms` }}
+    >
+      <div ref={tiltRef} className="project-card__inner">
+        {/* Gradient image area */}
+        <div
+          className="project-card__hero"
+          style={{ "--accent": project.accent }}
+          aria-hidden="true"
         >
-          <ExternalLink size={16} className="opacity-80" aria-hidden="true" />
-          Live
-        </a>
+          <div className="project-card__hero-grid" />
+          {project.concept && (
+            <span className="project-card__concept-badge">Concept</span>
+          )}
+        </div>
 
-        <a
-          className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-transparent transition hover:decoration-current hover:opacity-80"
-          href={project.repo}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Github size={16} className="opacity-80" aria-hidden="true" />
-          Repo
-        </a>
+        {/* Content */}
+        <div className="project-card__body">
+          <h3 className="project-card__title">{project.title}</h3>
+          <p className="project-card__desc">{project.description}</p>
+
+          <div className="project-card__tags">
+            {project.tech.map((t) => (
+              <span key={t} className="project-card__tag">{t}</span>
+            ))}
+          </div>
+
+          <div className="project-card__links">
+            {project.live !== "#" && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noreferrer"
+                className="project-card__link"
+              >
+                <ExternalLink size={14} aria-hidden="true" />
+                Live site
+              </a>
+            )}
+            {project.repo !== "#" && (
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noreferrer"
+                className="project-card__link"
+              >
+                <Github size={14} aria-hidden="true" />
+                Source
+              </a>
+            )}
+          </div>
+        </div>
       </div>
-
     </div>
   );
 }
 
 export default function Projects() {
+  const headerRef = useScrollReveal();
+
   return (
-    <section id="projects" className="mx-auto max-w-5xl px-4 py-16">
-      <div className="text-center">
+    <section id="projects" className="container-x section-y">
+      <div ref={headerRef} className="reveal mx-auto max-w-2xl text-center">
         <h2 className="text-2xl font-bold">Projects</h2>
         <p className="mt-2 text-slate-600 dark:text-slate-400">
-          A few things I’ve built.
+          Things I've built — and one thing I'm planning to.
         </p>
+      </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {projects.map((p) => (
-            <ProjectCard key={p.title} project={p} />
-          ))}
-        </div>
+      <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((p, i) => (
+          <ProjectCard key={p.title} project={p} delay={i * 100} />
+        ))}
       </div>
     </section>
   );
