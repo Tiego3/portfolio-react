@@ -89,9 +89,9 @@ function VantaBg() {
         THREE,
         color: 0x7c7cf8,
         backgroundColor: isDark() ? 0x020617 : 0xf8fafc,
-        points: 7.0,
-        maxDistance: 22.0,
-        spacing: 18.0,
+        points: 10.0,
+        maxDistance: 26.0,
+        spacing: 16.0,
         showDots: true,
       });
     };
@@ -114,7 +114,7 @@ function VantaBg() {
   return (
     <div
       ref={ref}
-      className="absolute inset-0 -z-10 opacity-70 dark:opacity-50"
+      className="absolute inset-0 -z-10 opacity-95 dark:opacity-80"
       aria-hidden="true"
     />
   );

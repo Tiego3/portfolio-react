@@ -123,6 +123,14 @@
   }
 }
 
+/* ── Vanta canvas reset ────────────────────────────────────────────── */
+.vanta-canvas,
+[data-vanta] canvas {
+  border: none !important;
+  outline: none !important;
+  display: block;
+}
+
 /* ── Custom Cursor ─────────────────────────────────────────────────── */
 .cursor-dot {
   position: fixed;
