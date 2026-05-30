@@ -124,11 +124,6 @@
 }
 
 /* ── Scroll Reveal ─────────────────────────────────────────────────── */
-/*
- * Base state: invisible + offset.
- * The JS hook adds .revealed when the element enters the viewport.
- * Stagger children with --delay CSS custom property.
- */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -226,22 +221,18 @@
     @apply antialiased;
   }
 
-  /* Typography defaults */
   h1, h2, h3 {
     @apply tracking-tight;
   }
 
-  /* Link styling */
   a {
     @apply text-slate-900 dark:text-slate-100;
   }
 
-  /* Nice selection */
   ::selection {
     background: rgba(124, 124, 248, 0.35);
   }
 
-  /* Better focus ring for accessibility */
   :focus-visible {
     outline: 3px solid rgba(124, 124, 248, 0.55);
     outline-offset: 3px;
